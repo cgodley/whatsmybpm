@@ -1,0 +1,10 @@
+application: whatsmybpm
+version: 2
+runtime: python
+api_version: 1
+
+handlers:
+- url: /
+  script: index.py
+- url: /
+  static_dir: static

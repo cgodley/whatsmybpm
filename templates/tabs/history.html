@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="span12">
+    
+    <div style="color:#777; font-size:12pt; margin: 20px 0; display:none"
+         data-bind="visible: historyItems().length < 1">
+      Take some measurements first!
+    </div>
+    
+    <table style="width:auto;display:none"
+           class="table table-striped"
+           data-bind="visible: historyItems().length > 0">
+        <thead><tr>
+            <th>Date</th><th>Time</th><th>BPM</th><th></th>
+        </tr></thead>
+        <tbody data-bind="foreach: historyItems">
+            <tr>
+                <td>
+                    <i class="icon-calendar"></i>&nbsp;
+                    <span data-bind="text: new Date(timestamp).toString('d MMM')"></span>
+                </td>
+                <td>
+                    <i class="icon-time"></i>&nbsp;
+                    <span data-bind="text: new Date(timestamp).toString('h:mm tt')"></span>
+                </td>
+                <td>
+                    <i class="icon-heart"></i>&nbsp;
+                    <span data-bind="text: bpm"></span>
+                </td>
+                <td>
+                    <a href="#" data-bind="click: $root.removeHistoryItem"><i class="icon-remove"></i></a>
+                </td>
+            </tr>    
+        </tbody>
+    </table>
+    
+  </div>
+</div>

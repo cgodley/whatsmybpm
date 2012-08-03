@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>whatsMyBpm - Instantly chart your heart rate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Tap your phone or keyboard for instantaneous and average bpm. Measurement history is saved in your browser for the next time you visit.">
+    <meta name="author" content="Cragin Godley">
+    
+    <!-- favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+    
+    <!-- iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    
+    <!-- Open Graph metadata -->
+    <meta property="og:title" content="whatsMyBpm - Instantly chart your heart rate" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://whatsmybpm.appspot.com" />
+    <meta property="og:image" content="http://whatsmybpm.appspot.com/img/icon_large4.png" />
+    <meta property="og:site_name" content="whatsMyBpm" />
+    <meta property="fb:admins" content="3800922" />
+    <meta property="og:description" content="Tap your phone or keyboard for instantaneous and average bpm. Measurement history is saved in your browser for the next time you visit.">
+
+    <!-- Styles -->
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+        min-height: 418px;
+      }
+      
+      .heartProgress span {
+        width : 22px;
+        height: 20px;
+        /*background-image: url(img/heart_small_empty.png);*/
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAUCAYAAACJfM0wAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAABhwAAAYcBOqddywAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAF5SURBVDiNrdTNbuIwGIXh1048rtAMA91011nMRSKxcbJB4hJyN9wKXUQU1FHnB0JjPnsWDdJ02kBKc3aRjx9ZkT+rGCMAeZ5fAdfAZ621DSF4YA88Zln2MzZFpZTKsuzr4XAYW2s/iYgBauAP8MM5twdQMUYmk8mXwWDwDdC8nRq4Gw6Hcbvd3oqIbemF3W63nM/nvxOl1JW19nuMsQ0FSLTW47qur0MI6YmestaOFovFL22MGYcQ1Iny81FCUF17xpixrqpqdK783lRVNdJA6BsGgk7T9KlvNU3TJ83zleo7e12W5QP9/o5QluWDLorCG2M2fanGmE1RFF4DeO83SZL4j6JJknjv/QaaSXPOBRFZiki8FBWRKCJL51yAZqSPyfN8BNxeaN855x6PHy/GuFlYXYCu/kVfwQ2+BtbvQNfNnhd58+Fxzq064uum+yqtL1oHvBU9CZ/BT6Lw361oy2w2u/He3wAYY+6n0+n9uT2d4CMO0AUF+AslDcIGPipKaQAAAABJRU5ErkJggg==);
+        display : inline-block;
+        cursor : pointer;
+        margin-right: 5px;
+      }
+      
+      .heartProgress span.fullHeart {
+        /*background-image: url(img/heart_small_full.png);*/
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAUCAYAAACJfM0wAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAABhwAAAYcBOqddywAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAL6SURBVDiNjZQxiB1VFIa/c2fWt7zsBhJCUhlhQW2CRYiFLCGFYiFiYQqLxEKxtRRilJAlaFSwElLYGSQLYhvBwkJBRKwsDASiGIsFmzTZt/Nm7r3nt7jvvrzEzSYDBy6cc777z3/OjEkCgOPHT/j+/e+mlNbpuqe87/8lxr+s778Z3b79JdIAgNkTcX397TbnM951T6rrjvjOzt82DD8tTSZX2N7+HcAkMRw7dppDh67avn3jtL2N7t5FfY9yBgnMttqUzqbx2JdWV6/a8vJRdR2aTFDXQdeh6RQNw6Tt+zdG0+l1m6ytPe8HD/4SxuOGtiVPp6jrCjglZiqhbVMYjWiWl1sLAe/7ApwFfQ/DAMOQmr4/0cameUc5NxYjljN5GFBKuDu4I4kQAri3yhkfBswMYsRTgpzntbgDtHFp6a12MHst5IwNxcKcEkqp2OCOSSQzzH3+BiZBSnNwFVDnJffTbYpxx5qmFAOKkZwSljPkjMxAIkhkwIoqSKmontWRc4G7g9mkTTnfspTWWGhQziWkAg2BPDubWamrsIW3qwzL+WYbc75hMb5MCGUDHoBKIrhD8bkMEsq52rbocan5w/48cOBoHo9vEsJyTWgWSBgUaAhFTQjl0kXFKRVrSv+O5fx0WLtz558Y4xcxRmJK80gpEXMukRI1P9TzLJfciYshff6stGWSuHH48EpyvyXpSJ1wtcHqHlflgJXJz+1YWLet1v2Z56SJ1RX5bXX1lJl9jzRShQPBrGzGLAzmF9dVm4Gng/tLJ6Wf5590fX5dWXnT3b/C3QAEBCjgBcXz4c3C3RXcz7wgbdb0fWCAH0ejDZMuCAjSPbWLltSemVpzv3BKurTI+R8Y4Iem+UzwHmblw6lKdwHj/umL0rkHGbuCAb4zuwycsxCwXSvA3T95RXp/t9xDwQDXzT7KcD4senuPevlV6fzDevcEA3xrdsngw/ua4OPXpQ/2bKx/pb3iGmxsgjZB12DjcXoeqbg+X5tdBDgrXXyc+v8A21ixCQtp3+cAAAAASUVORK5CYII=);
+      }
+      
+      .noselect {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      
+    </style>
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- Analytics -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-32358143-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" style="padding-bottom:6px; padding-left:38px" href="/"><img alt="heart icon" src="data:image/png;base64,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" style="margin-left:-35px;margin-right:5px"/>whatsMyBpm</a>
+          <ul class="nav" data-bind="foreach: tabs">
+            <li data-bind="css: { active: $data == $root.chosenTabId() }">
+              <a href='#' data-bind="text: $data, 
+                 click: $root.goToTab"></a>
+             </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    {% for tabData in tab_paths_by_name.items %}
+    <div id="container-{{tabData.0}}" class="container" style="min-height:250px" data-bind="visible: '{{tabData.0}}' == $root.chosenTabId()">
+    {% include tabData.1 %}
+    </div>
+    {% endfor %}
+
+      <!-- Footer -->
+      <hr>
+
+      <footer>
+      <div class="row">
+        <div class="offset1 span3">
+        
+        <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwhatsmybpm.appspot.com&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font&amp;height=80" style="border:none; overflow:hidden; width:450px; height:80px;"></iframe>
+      
+        <p style="color:#bbb">© Cragin Godley 2012</p>
+        </div>
+      </div>
+      </footer>
+
+    <!-- Scripts
+    ================================================== -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    
+    <!-- 
+    <script src="js/knockout-2.1.0.js"></script>
+    <script src="js/date.js"></script>
+    
+    <script src="js/viewModel.js"></script>
+    <script src="js/hideAddressBar.js"></script>
+    <script src="js/highcharts/highcharts.js"></script>
+    <script src="js/chartOptions.js"></script>
+    <script src="js/heartRate.js"></script>
+     -->
+    
+    <script src="js-min/heartRate.min.js"></script>
+
+</body></html>

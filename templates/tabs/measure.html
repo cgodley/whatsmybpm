@@ -1,0 +1,36 @@
+<div class="row noselect">
+  
+  <div class="span2 offset2">
+    <div class="hidden-phone">
+      <h1 class="bpmLabel" style="font-size:46pt; line-height:33pt; text-align:right">0</h1>
+    </div>
+    <div class="visible-phone">
+      <h1 class="bpmLabel" style="font-size:46pt; margin:0px 10px 6px 10px; text-align:right; margin-bottom:-40px;">0</h1>
+    </div>
+  </div>
+  
+  <div class="span6">
+      <div class="visible-desktop"
+           id="helpLabel"
+           style="opacity:0; margin-bottom:10px;">
+        <b style="font-size:18pt">tap any key (or click) after your pulse</b>
+        </div>
+      <div class="hidden-desktop" style="margin-bottom:6px">
+        <b style="font-size:12pt">tap page after your pulse</b>
+      </div>
+      <div class="visible-phone"
+          data-bind="heartProgress: fullHeartCount">
+      </div>
+      <div class="hidden-phone"
+          style="margin-top:5px"
+          data-bind="heartProgress: fullHeartCount">
+      </div>
+  </div>
+</div>
+
+<div class="row noselect">
+  <div class="span8 offset2">
+    <div id="bpmChart" style="height: 200px; margin: 0 auto; padding-top:5px"></div>
+    <div id="chartClickShield" class="hidden-desktop" style="position:absolute"></div>
+  </div>
+</div>
