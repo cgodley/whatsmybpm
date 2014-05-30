@@ -6,10 +6,11 @@ var chartArgs = {
         type : 'line',
         marginRight : 10
     },
+    colors : ["#61658E", "#7798BF", "#55BF3B", "#DF5353", "#aaeeee", "#ff0066", "#eeaaee", "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
     title : null,
     xAxis : {
         title : {
-            text : 'Showing last 20 seconds'
+            text : 'Showing last 5 minutes'
         },
         lineWidth: 0,
         minorGridLineWidth: 0,
@@ -25,9 +26,8 @@ var chartArgs = {
     },
     tooltip : {
         formatter : function() {
-            return '<b>' + this.series.name + '<br/>' + Highcharts.numberFormat(this.y, 2) + '</b><br/>' + 'Time: ' + Highcharts.numberFormat(this.x, 2) + ' minutes<br/>';
+            return '<b>' + this.series.name + '<br/>' + Highcharts.numberFormat(this.y, 2) + '</b><br/>' + 'Time: ' + Highcharts.numberFormat(Math.round(10 * 60 * this.x)/10, 2) + ' seconds<br/>';
         }
-
     },
     legend : {
         enabled : false
@@ -51,7 +51,6 @@ Highcharts.setOptions({
     global : {
         useUTC : false
     },
-    colors : ["61658E", "#7798BF", "#55BF3B", "#DF5353", "#aaeeee", "#ff0066", "#eeaaee", "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
     chart : {
         backgroundColor : {
             linearGradient : [0, 0, 0, 400],
@@ -135,7 +134,7 @@ Highcharts.setOptions({
     tooltip : {
         backgroundColor : {
             linearGradient : [0, 0, 0, 50],
-            stops : [[0, 'rgba(96, 96, 96, .8)'], [1, 'rgba(16, 16, 16, .8)']]
+            stops : [[0, 'rgba(96, 96, 96, .8)'], [1, 'rgba(48, 48, 48, .8)']]
         },
         borderWidth : 0,
         style : {

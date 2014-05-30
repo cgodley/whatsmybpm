@@ -1,5 +1,5 @@
 var TAPS_PER_MEASUREMENT = 4;
-var MAX_CHART_RANGE = 0.33; // minutes
+var MAX_CHART_RANGE = 5; // minutes
 
 var FADED_LABEL_OPACITY = 0.33;
 var FONT_SIZE_BPM = '46pt';
